@@ -1,6 +1,6 @@
-# CityCare — Akilli Sehir Ihbar Sistemi
+# CityCare — Akıllı Şehir İhbar Sistemi
 
-## Proje Ozeti
+## Proje Özeti
 
 CityCare, vatandaslarin sehirdeki sorunlari fotograf ekleyerek bildirebildigi,
 yetkililerin ise bu ihbarlari yonetebildigi bir Spring Boot web uygulamasidir.
