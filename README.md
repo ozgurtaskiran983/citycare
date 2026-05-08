@@ -7,6 +7,31 @@ yetkililerin ise bu ihbarlari yonetebildigi bir Spring Boot web uygulamasidir.
 
 ---
 
+## 📸 Ekran Görüntüleri
+
+### 🔐 Giriş Sayfası
+![Giris](docs/screenshots/login.png)
+
+### 🏙️ İhbar Listesi
+![Ihbar Listesi](docs/screenshots/citizen-list.png)
+
+### 📝 Yeni İhbar Oluştur
+![Yeni Ihbar](docs/screenshots/create-report.png)
+
+### 🔍 İhbar Detayı
+![Ihbar Detay](docs/screenshots/report-detail.png)
+
+### 🛡️ Admin Panosu
+![Admin Pano](docs/screenshots/admin-dashboard.png)
+
+### 📋 Admin İhbar Yönetimi
+![Admin Ihbar](docs/screenshots/admin-reports.png)
+
+### 👥 Kullanıcı Yönetimi
+![Kullanici Yonetimi](docs/screenshots/admin-users.png)
+
+---
+
 ## Proje Yapisi
 
 ```
