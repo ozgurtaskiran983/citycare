@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+  layout.html - Shared navigation fragments used across all pages.
+
+  Fragments defined here:
+    navbar       -> Citizen-themed navbar (blue gradient). Used by /reports/* pages.
+    admin-navbar -> Admin-themed navbar (dark charcoal). Used by /admin/* pages.
+
+  Both navbars include:
+    - Logo / brand link
+    - Role-aware navigation links (sec:authorize)
+    - Authenticated username badge
+    - CSRF-protected logout form
+-->
+<html lang="tr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     VATANDAş NAVBAR — mavi tema
+════════════════════════════════════════ -->
+<nav th:fragment="navbar"
+     class="navbar navbar-expand-lg sticky-top"
+     style="background:linear-gradient(135deg,#0b3d6e,#1a6fc4);box-shadow:0 2px 12px rgba(0,0,0,.25)">
+  <div class="container-fluid px-3">
+    <a class="navbar-brand fw-bold text-white" style="font-size:1.35rem;letter-spacing:-.3px"
+       href="/reports">
+      <i class="bi bi-building-check me-2"></i>CityCare
+    </a>
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgba(255,255,255,.85)" href="/reports">
+            <i class="bi bi-list-ul me-1"></i>İhbarlar
+          </a>
+        </li>
+        <li class="nav-item" sec:authorize="!hasRole('ADMIN')">
+          <a class="nav-link" style="color:rgba(255,255,255,.85)" href="/reports/my">
+            <i class="bi bi-person-lines-fill me-1"></i>İhbarlarım
+          </a>
+        </li>
+        <li class="nav-item" sec:authorize="!hasRole('ADMIN')">
+          <a class="nav-link" style="color:rgba(255,255,255,.85)" href="/reports/create">
+            <i class="bi bi-plus-circle me-1"></i>Yeni İhbar
+          </a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+          <a class="nav-link" style="color:rgba(255,255,255,.85)" href="/admin">
+            <i class="bi bi-shield-fill me-1"></i>Yönetim Paneli
+          </a>
+        </li>
+        <li class="nav-item ms-2 d-flex align-items-center gap-2">
+          <span class="badge bg-white text-dark small"
+                sec:authentication="name">kullanıcı</span>
+          <form th:action="@{/logout}" method="post" class="d-inline m-0">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-sm btn-outline-light rounded-pill px-3">
+              <i class="bi bi-box-arrow-right"></i> Çıkış
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     ADMİN NAVBAR — koyu antrasit tema
+════════════════════════════════════════ -->
+<nav th:fragment="admin-navbar"
+     class="navbar navbar-expand-lg sticky-top"
+     style="background:linear-gradient(135deg,#0f0f1a,#1a1a2e);box-shadow:0 2px 16px rgba(0,0,0,.55)">
+  <div class="container-fluid px-3">
+    <a class="navbar-brand fw-bold" style="font-size:1.35rem;color:#e94560"
+       href="/admin">
+      <i class="bi bi-shield-fill me-2"></i>CityCare
+      <span class="badge ms-2"
+            style="background:#e94560;font-size:.58rem;vertical-align:middle;
+                   padding:.3em .6em;border-radius:4px">YÖNETİM</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#adminNav">
+      <i class="bi bi-list text-white fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="adminNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgba(255,255,255,.75)" href="/admin">
+            <i class="bi bi-grid-fill me-1"></i>Panel
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgba(255,255,255,.75)" href="/admin/reports">
+            <i class="bi bi-flag-fill me-1"></i>İhbar Kayıtları
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgba(255,255,255,.75)" href="/admin/users">
+            <i class="bi bi-people-fill me-1"></i>Kullanıcılar
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:rgba(255,255,255,.45);font-size:.85rem"
+             href="/reports">
+            <i class="bi bi-eye me-1"></i>Vatandaş Görünümü
+          </a>
+        </li>
+        <li class="nav-item ms-2 d-flex align-items-center gap-2">
+          <span class="badge small"
+                style="background:#e94560;padding:.35em .65em"
+                sec:authentication="name">admin</span>
+          <form th:action="@{/logout}" method="post" class="d-inline m-0">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-sm rounded-pill px-3"
+                    style="background:#e94560;color:#fff;border:none">
+              <i class="bi bi-box-arrow-right"></i>
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>

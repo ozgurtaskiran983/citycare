@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--
+  Kullanim: <div th:replace="~{fragments/urgency :: bubbles(${report.urgency})}"></div>
+  5 renk balonuyla 1-5 aciliyet gosterimi.
+  Renk skali: 1=yesil, 2=lime, 3=sari, 4=turuncu, 5=kirmizi
+-->
+<span th:fragment="bubbles(level)"
+      class="d-inline-flex align-items-center gap-1"
+      th:with="colors=${ {'#28a745','#7cb83b','#ffc107','#fd7e14','#dc3545'} }">
+  <span th:each="i : ${#numbers.sequence(1, 5)}"
+        style="display:inline-block;width:12px;height:12px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15)"
+        th:style="|display:inline-block;width:12px;height:12px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15);background:${i <= level ? report.urgencyColor : '#dee2e6'}|">
+  </span>
+  <small class="text-muted ms-1" th:text="'(' + ${level} + '/5)'"></small>
+</span>
+</body>
+</html>
