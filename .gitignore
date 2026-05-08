@@ -1,0 +1,19 @@
+# Maven derleme ciktilari
+target/
+*.class
+
+# IDE dosyalari
+.idea/
+*.iml
+.vscode/
+*.DS_Store
+
+# Log dosyalari
+*.log
+logs/
+
+# Spring Boot uygulama ayarlari (hassas bilgi)
+# application-prod.properties
+
+# Maven wrapper (opsiyonel)
+!.mvn/wrapper/maven-wrapper.jar
